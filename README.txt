@@ -1,3 +1,8 @@
+ALWAYS: git pull 
+before starting to code
+
+
+
 FLASK Protocol: 
 
 STARTING:
@@ -11,7 +16,6 @@ FINISHING:
 pip freeze > requirements.txt
 
 GITHUB Protocol: 
-git pull
 git add .
 git commit -m "commit name"
 git push
