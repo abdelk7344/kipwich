@@ -1,13 +1,13 @@
 FLASK Protocol: 
 
 STARTING:
-source venv/bin/activate
+python3 -m venv env
+source ./env/bin/activate
 pip install -r requirements.txt
 flask run
 
 FINISHING: 
 pip freeze > requirements.txt
-
 
 GITHUB Protocol: 
 
