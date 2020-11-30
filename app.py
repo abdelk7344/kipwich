@@ -10,34 +10,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 application = app
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ingredients.db'
-# Initialize the database
-db = SQLAlchemy(app)
-
-migrate = Migrate(app, db)
-
-#Create db model
-class Ingredients(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
-
-
-app.config['SECRET_KEY'] = 'hard to guess string'
-
 bootstrap = Bootstrap(app)
-moment = Moment(app)
-
-
-class IngForm(FlaskForm):
-    ingredient = StringField('Enter a new ingredient:', validators=[DataRequired()])
-    submit = SubmitField('Add ingredient')
-
-class UpdateForm(FlaskForm):
-    updatedingredient = StringField('Enter updated ingredient:', validators=[DataRequired()])
-    updatesubmit = SubmitField('Update ingredient')
-
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -51,54 +24,4 @@ def internal_server_error(e):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    ingredient = None
-    form = IngForm()
-    if form.validate_on_submit():
-        new_ingredient = Ingredients(name=form.ingredient.data)
-
-        # Push to Database
-        try:
-            db.session.add(new_ingredient)
-            db.session.commit()
-            return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
-            # return redirect('/')
-        except:
-            return "There was an error adding your ingredient"
-
-
-       # ingredient = form.ingredient.data #OLD FROM ASSG07
-       # form.ingredient.data = ''    #OLD FROM ASSG07
-    else:
-        ingredients = Ingredients.query.order_by(Ingredients.date_created)
-        return render_template('index.html', form=form, ingredients = ingredients)
-
-@app.route('/asg10/update/<int:idD>', methods=['GET', 'POST'])
-def hello(idD):
-    ingredient_to_up = Ingredients.query.get_or_404(idD)
-
-    form =UpdateForm()
-    if form.validate_on_submit():
-        ingredient_to_up.name = form.updatedingredient.data
-        try: 
-            db.session.commit()
-            # return redirect('/')
-            return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
-        except:
-            return "ERROR Updating"
-    else: 
-        return render_template('update.html', ingredient_to_up = ingredient_to_up, form =form)
-
-    
-
-@app.route('/asg10/delete/<int:idC>')
-def delete(idC):
-    ingredient_to_del = Ingredients.query.get_or_404(idC)
-
-    try:
-        db.session.delete(ingredient_to_del)
-        db.session.commit()
-        # return redirect('/')
-        return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
-
-    except:
-        return "ERROR Deleting"
+    return render_template('index.html')
