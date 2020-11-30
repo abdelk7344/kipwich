@@ -8,10 +8,14 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
 
+
+
 app = Flask(__name__)
 application = app
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ingredients.db'
+
+
 # Initialize the database
 db = SQLAlchemy(app)
 
