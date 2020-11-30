@@ -42,8 +42,7 @@ def index():
         try:
             db.session.add(new_ingredient)
             db.session.commit()
-            return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
-            # return redirect('/')
+            return redirect('/')
         except:
             return "There was an error adding your ingredient"
 
@@ -63,8 +62,7 @@ def hello(idD):
         ingredient_to_up.name = form.updatedingredient.data
         try: 
             db.session.commit()
-            # return redirect('/')
-            return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
+            return redirect('/')
         except:
             return "ERROR Updating"
     else: 
@@ -79,8 +77,7 @@ def delete(idC):
     try:
         db.session.delete(ingredient_to_del)
         db.session.commit()
-        # return redirect('/')
-        return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
+        return redirect('/')
 
     except:
         return "ERROR Deleting"
