@@ -1,7 +1,94 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Kipwich{% endblock %}
 
 {% block page_content %}
     <h1>Let's make this site awsome!  Watch out for herpes!</h1>
+
+
+	
+
+	<h2>Chicken Tikka Masala</h2>
+	<h4>6 servings </h4>
+
+	
+
+	<img src="/static/images/Chicken-Tikka-Masala-2.jpg" alt = "Chicken Tikka Masala" class = "center">
+	<p> For this chicken tikka masala recipe, the yogurt helps tenderize the chicken; the garlic, ginger, and spices in the marinade infuse it with lots of flavor. This is part of BA's Best, a collection of our essential recipes.</p>
+
+	<p> Honestly, you need to try this recipe.  If you are feeling sad, it will make you happy.  If you're feeling happy, it will make you happier.  There is no downside.  Life is short.  Don't miss your chance to experience true bliss.  Make the chicken tikka masala. </p>
+
+	<h4>Ingredients</h4>
+<!-- 	<button id="ingredientButton">Show the ingredients, one-by-one</button> -->
+	<ul class = "Ingredients" id="ingredientsList"> 
+	
+
+
+
+		{% for ingredient in ingredients %}
+			<li>
+				{{ ingredient.name }}  
+
+  {% set update_url= url_for('hello', idD=ingredient.id)%}
+   {% set delete_url= url_for('delete', idC=ingredient.id)%}
+    <a href="{{update_url}}" class= "btn btn-outline-primary btn-sm">Update</a>
+     <a href='{{delete_url}}' class= "btn btn-outline-danger btn-sm">Delete</a>
+
+
+
+<!-- 				<a href = "/asg10/update/{{ ingredient.id }}" class= "btn btn-outline-primary btn-sm">Update </a>
+				<a href = "/asg10/delete/{{ ingredient.id }}" class= "btn btn-outline-danger btn-sm">Delete </a> -->
+			</li>
+		{% endfor %}
+
+<!-- 	</div> -->
+
+
+	</ul>
+	<h5>{{ wtf.quick_form(form) }} </h5>
+
+
+
+
+	<h4 class ="Prep"> Recipe Preparation </h4>
+  <!--   <button id="stepsButton">Show the steps, one-by-one</button> -->
+	<ol id="stepsList">
+
+		<li>
+	Do Ahead: Chicken can be made 2 days ahead. Cover; chill. Reheat before serving.  Unless you want cold chicken.  I won't judge.</li>
+
+	<li>Combine garlic, ginger, turmeric, garam masala, coriander, and cumin in a small bowl. Whisk yogurt, salt, and half of spice mixture in a medium bowl; add chicken and turn to coat. Cover and chill 4-6 hours. Cover and chill remaining spice mixture.  Mmmmm so spice.  </li>
+
+	<li>
+	Heat ghee in a large heavy pot over medium heat. Add onion, tomato paste, cardamom, and chiles and cook, stirring often, until tomato paste has darkened and onion is soft, about 5 minutes. Add remaining half of spice mixture and cook, stirring often, until bottom of pot begins to brown, about 4 minutes.  Try to enjoy this process.  Anything can be pleasurable if you are truly present.</li>
+
+	<li>
+	Add tomatoes with juices, crushing them with your hands as you add them.  Crush them under your mighty fist.  You are truly the tomato conqueror.  Make them fear you. Bring to a boil, reduce heat, and simmer, stirring often and scraping up browned bits from bottom of pot, until sauce thickens, 8-10 minutes. A thick sauce is a happy sauce.</li>
+
+	<li>
+	Add cream and chopped cilantro. Simmer, stirring occasionally, until sauce thickens, 30-40 minutes.  The thicker the better.</li>
+
+	<li>
+	Meanwhile, preheat broiler. Line a rimmed baking sheet with foil and set a wire rack inside sheet. Arrange chicken on rack in a single layer. Broil until chicken starts to blacken in spots (it will not be cooked through), about 10 minutes.  Isn't broil a fun word to say?  Try saying it.</li>
+
+	<li>
+	Cut chicken into bite-size pieces, add to sauce, and simmer, stirring occasionally, until chicken is cooked through, 8-10 minutes. Serve with rice and cilantro sprigs.  You have just made your life much better.  Congratulations.  You are the yellow ball.</li>
+
+
+</ol>
+
+
+
+
+
+<img src="/static/images/Realhappy.jpg" alt = "a happy face amidst a sea of sadness" class ="happy">
+
+
+	<a href="https://www.bonappetit.com/recipe/chicken-tikka-masala" target="_blank" class ="Source"> Recipe Source </a>
+
+
+
+
 {% endblock %}
+
