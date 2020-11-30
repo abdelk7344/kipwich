@@ -9,7 +9,6 @@ from datetime import datetime
 from flask_migrate import Migrate
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
 application = app
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ingredients.db'
@@ -18,8 +17,27 @@ db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
 
+#Create db model
+class Ingredients(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+app.config['SECRET_KEY'] = 'hard to guess string'
 
 bootstrap = Bootstrap(app)
+moment = Moment(app)
+
+
+class IngForm(FlaskForm):
+    ingredient = StringField('Enter a new ingredient:', validators=[DataRequired()])
+    submit = SubmitField('Add ingredient')
+
+class UpdateForm(FlaskForm):
+    updatedingredient = StringField('Enter updated ingredient:', validators=[DataRequired()])
+    updatesubmit = SubmitField('Update ingredient')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -42,7 +60,8 @@ def index():
         try:
             db.session.add(new_ingredient)
             db.session.commit()
-            return redirect('/')
+            return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
+            # return redirect('/')
         except:
             return "There was an error adding your ingredient"
 
@@ -62,7 +81,8 @@ def hello(idD):
         ingredient_to_up.name = form.updatedingredient.data
         try: 
             db.session.commit()
-            return redirect('/')
+            # return redirect('/')
+            return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
         except:
             return "ERROR Updating"
     else: 
@@ -77,7 +97,8 @@ def delete(idC):
     try:
         db.session.delete(ingredient_to_del)
         db.session.commit()
-        return redirect('/')
+        # return redirect('/')
+        return redirect("http://jaltomar.digitalscholar.rochester.edu/asg10", code=302)
 
     except:
         return "ERROR Deleting"
