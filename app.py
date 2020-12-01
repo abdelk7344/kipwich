@@ -49,3 +49,17 @@ def index():
     else:
         all_activities=Bucket.query
         return render_template('index.html',all_activities=all_activities)
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    activity_to_update= Bucket.query.get_or_404(id)
+    if request.method=="POST":
+        activity_to_update.activity=request.form['activity']
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "There was an error updating your activity"
+         
+    else:
+        return render_template('update.html',activity_to_update=activity_to_update)
