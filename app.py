@@ -11,8 +11,18 @@ from flask_migrate import Migrate
 
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///bucket.db'
 application = app
 bootstrap = Bootstrap(app)
+
+#intialize database
+db=SQLAlchemy(app)
+#db model
+class Bucket(db.Model):
+    id= db.Column(db.Integer,primary_key=True)
+    activity=db.Column(db.String(500),nullable=False)
+    def __repr__(self):
+        return '<Activity %r>' % self.id
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -26,4 +36,16 @@ def internal_server_error(e):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method=="POST":
+        activity_name=request.form['activity']
+        new_activity=Bucket(activity=activity_name)
+        try:
+            db.session.add(new_activity)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "There was an error adding your activity"
+         
+    else:
+        all_activities=Bucket.query
+        return render_template('index.html',all_activities=all_activities)
