@@ -1,10 +1,26 @@
 {% extends "base.html" %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block title %}Kipwich{% endblock %}
 
 {% block page_content %}
 
-<h1>We got this</h1>
+<h1>Bucket List</h1>
+
+<ul>
+  <li>Climb everest</li>
+  <li>Do a back flip</li>
+  <li>Win at life</li>
+  {%for activity in all_activities%}
+    <li>{{activity.activity}}</li>
+  {%endfor%}
+</ul>
+
+
+
+<form action= "/" METHOD = "POST">
+	<input type = "text" placeholder ="Skydiving" name = "activity" >
+	<input type = "submit" value= "Add Activity" class = "btn btn-secondary">
+</form>
 
 {% endblock %}
 

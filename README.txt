@@ -6,7 +6,9 @@ before starting to code
 FLASK Protocol: 
 
 STARTING:
-JORDAN: source env/bin/activate
+JORDAN: 
+python3 -m venv env
+source env/bin/activate
 ABDEL: source venv/bin/activate
 PIYUSH: source env1/bin/activate
 pip install -r requirements.txt
