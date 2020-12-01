@@ -70,7 +70,7 @@ def delete(id):
     activity_to_delete= Bucket.query.get_or_404(id)
     try:
         db.session.delete(activity_to_delete)
-        db.commit()
+        db.session.commit()
         return redirect('/')
     except:
         return "There was a problem deleting that activity"
