@@ -7,11 +7,25 @@ from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
+from sqlalchemy.ext.mutable import Mutable
 
+class MutableList(Mutable, list):
+    def append(self, value):
+        list.append(self, value)
+        self.changed()
 
+    @classmethod
+    def coerce(cls, key, value):
+        if not isinstance(value, MutableList):
+            if isinstance(value, list):
+                return MutableList(value)
+            return Mutable.coerce(key, value)
+        else:
+            return value
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///bucket.db'
+# app.config['SQLALCHEMY_BINDS']={'user': 'sqlite:///users.db'}
 application = app
 bootstrap = Bootstrap(app)
 
@@ -23,6 +37,17 @@ class Bucket(db.Model):
     activity=db.Column(db.String(500),nullable=False)
     def __repr__(self):
         return '<Activity %r>' % self.id
+
+# class Users(db.Model):
+#     __bind_key__='user'
+#     id= db.Column(db.Integer,primary_key=True)
+#     name=db.Column(db.String(500),nullable=False)
+#     email=db.Column(db.String(500),nullable=False)
+#     password=db.Column(db.String(500),nullable=False)
+#     activities = db.Column(MutableList.as_mutable(ARRAY(db.String)))
+#     def __repr__(self):
+#         return '<User %r>' % self.id
+
 
 @app.errorhandler(404)
 def page_not_found(e):
