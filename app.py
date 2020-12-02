@@ -8,6 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
 from sqlalchemy.ext.mutable import Mutable
+from sqlalchemy import ARRAY
+
 
 class MutableList(Mutable, list):
     def append(self, value):
@@ -25,7 +27,7 @@ class MutableList(Mutable, list):
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///bucket.db'
-# app.config['SQLALCHEMY_BINDS']={'user': 'sqlite:///users.db'}
+app.config['SQLALCHEMY_BINDS']={'user': 'sqlite:///users.db'}
 application = app
 bootstrap = Bootstrap(app)
 
@@ -38,15 +40,15 @@ class Bucket(db.Model):
     def __repr__(self):
         return '<Activity %r>' % self.id
 
-# class Users(db.Model):
-#     __bind_key__='user'
-#     id= db.Column(db.Integer,primary_key=True)
-#     name=db.Column(db.String(500),nullable=False)
-#     email=db.Column(db.String(500),nullable=False)
-#     password=db.Column(db.String(500),nullable=False)
-#     activities = db.Column(MutableList.as_mutable(ARRAY(db.String)))
-#     def __repr__(self):
-#         return '<User %r>' % self.id
+class Users(db.Model):
+    __bind_key__='user'
+    id= db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(500),nullable=False)
+    email=db.Column(db.String(500),nullable=False)
+    password=db.Column(db.String(500),nullable=False)
+    activities = db.Column(MutableList.as_mutable(ARRAY(db.String)))
+    def __repr__(self):
+        return '<User %r>' % self.id
 
 
 @app.errorhandler(404)
