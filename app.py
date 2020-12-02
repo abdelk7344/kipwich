@@ -111,3 +111,8 @@ def signup():
 def login():
     return render_template('login.html')
 
+
+@app.route('/Profile', methods=['GET', 'POST'])
+def profile():
+    return render_template('profile.html')
+
