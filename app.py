@@ -101,3 +101,20 @@ def delete(id):
         return redirect('/')
     except:
         return "There was a problem deleting that activity"
+
+
+
+@app.route('/SignUp', methods=['GET', 'POST'])
+def signup():
+    return render_template('SignUp.html')
+
+
+@app.route('/Login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
+
+@app.route('/Profile', methods=['GET', 'POST'])
+def profile():
+    return render_template('profile.html')
+
