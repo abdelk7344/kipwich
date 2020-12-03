@@ -116,34 +116,35 @@ def profile():
         except:
             return "There was an error adding User"
     else:
-        all_activities=current_user.list
+        all_activities=current_user.activities
         return render_template('profile.html', user = current_user,form=form,all_activities= all_activities)
 
 
-# @app.route('/aupdate/<int:id>', methods=['GET', 'POST'])
-# def aupdate(id):
-#     activity_to_update= List.query.get_or_404(id)
-#     if request.method=="POST":
-#         activity_to_update.activity=request.form['activity']
-#         try:
-#             db.session.commit()
-#             return redirect('/act')
-#         except:
-#             return "There was an error updating your activity"
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def aupdate(id):
+    form = ActivityForm()
+    activity_to_update= List.query.get_or_404(id)
+    if form.validate_on_submit():
+        activity_to_update.activity=form.activity.data
+        try:
+            db.session.commit()
+            return redirect('/Profile')
+        except:
+            return "There was an error updating your activity"
          
-#     else:
-#         return render_template('aupdate.html',activity_to_update=activity_to_update)
+    else:
+        return render_template('update.html',activity_to_update=activity_to_update,form=form)
 
 
-# @app.route('/adelete/<int:id>')
-# def adelete(id):
-#     activity_to_delete= List.query.get_or_404(id)
-#     try:
-#         db.session.delete(activity_to_delete)
-#         db.session.commit()
-#         return redirect('/act')
-#     except:
-#         return "There was a problem deleting that activity"
+@app.route('/delete/<int:id>')
+def adelete(id):
+    activity_to_delete= List.query.get_or_404(id)
+    try:
+        db.session.delete(activity_to_delete)
+        db.session.commit()
+        return redirect('/Profile')
+    except:
+        return "There was a problem deleting that activity"
 
 
 
