@@ -4,16 +4,34 @@
 
 {% block page_content %}
 
-<h1>Bucket List</h1>
 
-<!-- <form action= "/" METHOD = "POST">
+<!-- <<<<<<< HEAD
+<form action= "/" METHOD = "POST">
 	<input type = "text" placeholder ="Skydiving" name = "activity" >
 	<input type = "submit" value= "Add Activity" class = "btn btn-secondary">
 </form>
+=======
+>>>>>>> adebe13d115ebfac992257a251a4e19bcbf1e638
 
+<div class= "clean">
 
+  <h1 class="head"> Bucket List</h1>
 
+  <form action= "/" METHOD = "POST">
+    <input type = "text" placeholder ="Skydiving" name = "activity" >
+    <input type = "submit" value= "Add Activity" class = "btn btn-secondary">
+  </form>
+  
+  <ul>
+    {%for activity in all_activities%}
+      <li>{{activity.activity}} <a href="/update/{{activity.id}}" class="btn btn-outline_secondary"
+  ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>  <a href="/delete/{{activity.id}}" class="btn btn-outline_secondary"
+  ><span class="glyphicon glyphicon-remove" aria-hidden="true"></a> </li>
+    {%endfor%}
+  </ul>
+  
 
+<<<<<<< HEAD
 
 
 <ul>
@@ -22,8 +40,11 @@
 ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a>  <a href="/delete/{{activity.id}}" class="btn btn-outline_secondary"
 ><span class="glyphicon glyphicon-remove" aria-hidden="true"></a> </li>
   {%endfor%}
-</ul> -->
+</ul>
 
+=======
+</div>
+>>>>>>> adebe13d115ebfac992257a251a4e19bcbf1e638 -->
 
 
 
