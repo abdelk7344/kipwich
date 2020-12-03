@@ -103,6 +103,9 @@ def delete(id):
         return "There was a problem deleting that activity"
 
 
+@app.route('/Home', methods=['GET', 'POST'])
+def home():
+    return render_template('Home.html')
 
 @app.route('/SignUp', methods=['GET', 'POST'])
 def signup():
