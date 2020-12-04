@@ -1,0 +1,77 @@
+*{
+	font-family: "Times New Roman", Times, serif;
+	}
+
+.head {
+    color: #EFA00B;
+    font-size: 100px;
+    margin-top: 20px;
+    text-align: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    
+}
+.head2{
+    text-align: center;
+    font-size: 90px;
+}
+
+        
+
+
+
+
+
+
+/* *{
+	font-family: "Times New Roman", Times, serif;
+	}
+
+.container {
+	align-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+}
+
+.head {
+    color: #EFA00B;
+    font-size: 70px;
+    margin-top: 20px;
+    
+}
+.navbar-collapse-collapse{
+	flex-direction: row;
+
+}
+
+.head {
+	align-content: center;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  .Kipwich{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+} */

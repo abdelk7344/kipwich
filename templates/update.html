@@ -6,8 +6,9 @@
 
 <h1>Update</h1>
 <form action= "/update/{{activity_to_update.id}}" METHOD = "POST">
-	<input type = "text" value="{{activity_to_update.activity}}" name = "activity" >
-	<input type = "submit" value= "Update Activity" class = "btn btn-secondary">
+	{{ form.hidden_tag() }}
+    {{ wtf.form_field(form.activity) }}
+    <button class="btn btn-secondary" type="submit"> Update </button>
 </form>
 {% endblock %}
 
