@@ -21,6 +21,14 @@
 </form>
 
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	{{ messages[0] }} 
+
+{% endif %}
+{% endwith %}
+
+
 <!-- 
 <form action= "/Login" METHOD = "POST">
 	<input type = "text" placeholder ="Email" name = "Email">

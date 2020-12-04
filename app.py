@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf import FlaskForm
@@ -29,8 +29,8 @@ login_manager.login_view = 'login'
 
 class User(UserMixin, db.Model):
     id= db.Column(db.Integer,primary_key=True)
-    username= db.Column(db.String(15), unique=True)
-    email = db.Column(db.String(50), unique=True)
+    username= db.Column(db.String(15))
+    email = db.Column(db.String(50))
     password = db.Column(db.String(80))
     activities=db.relationship('List',cascade="all, delete-orphan",backref='owner')
     def __repr__(self):
@@ -79,6 +79,15 @@ def signup():
     form = RegisterForm()
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method = 'sha256')
+
+
+        user = User.query.filter_by(username=form.username.data).first()
+        if user: 
+            flash('Email address already exists')
+            return redirect(url_for('signup'))
+
+
+
         new_user = User(username=form.username.data, email = form.email.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
@@ -96,7 +105,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for('profile'))
 
-        return '<h1>invalid username or password</h1>'
+        flash('Invalid username or password')
     
     return render_template('login.html', form = form)
 

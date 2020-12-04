@@ -3,7 +3,7 @@
 {% block title %}Flasky{% endblock %}
 
 {% block head %}
-{{ super() }}
+<!-- {{ super() }} -->
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 <!-- bootstrap -->
@@ -25,9 +25,9 @@ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Kipwich</a>
+<!--             <a class="navbar-brand" href="/">Kipwich</a> -->
         </div>
-        <div class="navbar-collapse-collapse">
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li> <a href="{{ url_for('index') }}">Home</a> </li>
                 <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
@@ -47,5 +47,5 @@ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
+<!-- {{ super() }} -->
 {% endblock %}
