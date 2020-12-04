@@ -135,9 +135,13 @@ def signup():
         hashed_password = generate_password_hash(form.password.data, method = 'sha256')
 
 
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user: 
             flash('Email address already exists')
+            return redirect(url_for('signup'))
+        user = User.query.filter_by(username=form.username.data).first()
+        if user: 
+            flash('Username already exists')
             return redirect(url_for('signup'))
 
 
