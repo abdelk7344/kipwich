@@ -9,12 +9,19 @@ from datetime import datetime
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import os
+
+
 
 app = Flask(__name__)
+
+image = os.path.join('static', 'image')
+app.config['UPLOAD_FOLDER'] = image
+
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 application = app
-bootstrap = Bootstrap(app)
+Bootstrap(app)
 
 #intialize database
 db=SQLAlchemy(app)
@@ -72,6 +79,53 @@ def internal_server_error(e):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    img1 = os.path.join(app.config['UPLOAD_FOLDER'] , 'home2.jpg')
+    return render_template('index.html' , user_image = img1) 
+    
+    #this is a temporary line that replaces the stuff below it
+    # if request.method=="POST":
+    #     activity_name=request.form['activity']
+    #     new_activity=Bucket(activity=activity_name)
+    #     try:
+    #         db.session.add(new_activity)
+    #         db.session.commit()
+    #         return redirect('/')
+    #     except:
+    #         return "There was an error adding your activity"
+         
+    # else:
+    #     all_activities=Bucket.query
+    #     return render_template('index.html',all_activities=all_activities)
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    activity_to_update= Bucket.query.get_or_404(id)
+    if request.method=="POST":
+        activity_to_update.activity=request.form['activity']
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "There was an error updating your activity"
+         
+    else:
+        return render_template('update.html',activity_to_update=activity_to_update)
+
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    activity_to_delete= Bucket.query.get_or_404(id)
+    try:
+        db.session.delete(activity_to_delete)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "There was a problem deleting that activity"
+
+
+@app.route('/Home', methods=['GET', 'POST'])
+def home():
+    return render_template('Home.html')
     return render_template('index.html') 
 
 @app.route('/SignUp', methods=['GET', 'POST'])
@@ -167,7 +221,8 @@ def logout():
 
 
 
-
+if __name__=='main':
+    app.run(debug=True)
 
 
 
