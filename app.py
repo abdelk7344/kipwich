@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 application = app
-bootstrap = Bootstrap(app)
+Bootstrap(app)
 
 #intialize database
 db=SQLAlchemy(app)
@@ -158,7 +158,8 @@ def logout():
 
 
 
-
+if __name__=='main':
+    app.run(debug=True)
 
 
 
