@@ -21,8 +21,20 @@
  {{ wtf.form_field(form.username) }}
   {{ wtf.form_field(form.password) }} 
    {{ wtf.form_field(form.remember) }} 
+
+
+
    <button class="btn btn-secondary" type="submit"> Sign in </button>
 </form>
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	{{ messages[0] }} 
+
+{% endif %}
+{% endwith %}
+
 
 
 {% endblock %}
