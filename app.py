@@ -11,6 +11,9 @@ from sqlalchemy.ext.mutable import Mutable
 from sqlalchemy import ARRAY
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import os
+
+
 
 
 class MutableList(Mutable, list):
@@ -28,6 +31,10 @@ class MutableList(Mutable, list):
             return value
 
 app = Flask(__name__)
+
+image = os.path.join('static', 'image')
+app.config['UPLOAD_FOLDER'] = image
+
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///NEWdatabase.db'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
@@ -108,7 +115,10 @@ def internal_server_error(e):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html') #this is a temporary line that replaces the stuff below it
+    img1 = os.path.join(app.config['UPLOAD_FOLDER'] , 'home1.jpg')
+    return render_template('index.html' , user_image = img1) 
+    
+    #this is a temporary line that replaces the stuff below it
     # if request.method=="POST":
     #     activity_name=request.form['activity']
     #     new_activity=Bucket(activity=activity_name)
