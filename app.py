@@ -17,6 +17,8 @@ app = Flask(__name__)
 
 image = os.path.join('static', 'image')
 app.config['UPLOAD_FOLDER'] = image
+video = os.path.join('static', 'video')
+app.config['UPLOAD_FOLDER2'] = video
 
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -79,8 +81,9 @@ def internal_server_error(e):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    vid1 = os.path.join(app.config['UPLOAD_FOLDER2'], 'beach.mp4')
     img1 = os.path.join(app.config['UPLOAD_FOLDER'] , 'home2.jpg')
-    return render_template('index.html' , user_image = img1) 
+    return render_template('index.html' , user_image = img1 , user_video = vid1) 
     
     #this is a temporary line that replaces the stuff below it
     # if request.method=="POST":

@@ -4,18 +4,19 @@
 
 {% block page_content %}
 
+
 <body class="body">
-    <h1 class="head"> KIPWICH </h1>
-    <div class="row text-center"  >
-        <img class="img-fluid" alt="Responsive image" src="{{ user_image}}" >
-        <h2 class="head2"> Exciting Adventures Await</h2>
-        <h3 class="head3"> Signup to create your bucket list!</h2>
 
-    </div>
-
-   
-
-    
+        <div class="header-content">
+            <h1 class="head"> KIPWICH </h1>
+            <img class="img-fluid" alt="Responsive image" src="{{ user_image}}" >
+            <h2 class="head2"> Exciting Adventures Await</h2>
+            <h3> Make a bucket list and fill it with dreams that have no boundaries!</h3>
+            <a href="{{ url_for('signup') }}"  class="btn btn-primary"> Sign Up Today </a> 
+            <a href="{{ url_for('login') }}"  class="btn btn-primary"> Login </a> 
+        </div>
+ 
+            
 
 </body>
 
