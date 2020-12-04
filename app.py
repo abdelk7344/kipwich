@@ -85,46 +85,6 @@ def index():
     img1 = os.path.join(app.config['UPLOAD_FOLDER'] , 'home2.jpg')
     return render_template('index.html' , user_image = img1 , user_video = vid1) 
     
-    #this is a temporary line that replaces the stuff below it
-    # if request.method=="POST":
-    #     activity_name=request.form['activity']
-    #     new_activity=Bucket(activity=activity_name)
-    #     try:
-    #         db.session.add(new_activity)
-    #         db.session.commit()
-    #         return redirect('/')
-    #     except:
-    #         return "There was an error adding your activity"
-         
-    # else:
-    #     all_activities=Bucket.query
-    #     return render_template('index.html',all_activities=all_activities)
-
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
-def update(id):
-    activity_to_update= Bucket.query.get_or_404(id)
-    if request.method=="POST":
-        activity_to_update.activity=request.form['activity']
-        try:
-            db.session.commit()
-            return redirect('/')
-        except:
-            return "There was an error updating your activity"
-         
-    else:
-        return render_template('update.html',activity_to_update=activity_to_update)
-
-
-@app.route('/delete/<int:id>')
-def delete(id):
-    activity_to_delete= Bucket.query.get_or_404(id)
-    try:
-        db.session.delete(activity_to_delete)
-        db.session.commit()
-        return redirect('/')
-    except:
-        return "There was a problem deleting that activity"
-
 
 @app.route('/Home', methods=['GET', 'POST'])
 def home():
@@ -136,8 +96,6 @@ def signup():
     form = RegisterForm()
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method = 'sha256')
-
-
         user = User.query.filter_by(email=form.email.data).first()
         if user: 
             flash('Email address already exists')
@@ -146,9 +104,6 @@ def signup():
         if user: 
             flash('Username already exists')
             return redirect(url_for('signup'))
-
-
-
         new_user = User(username=form.username.data, email = form.email.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
@@ -167,7 +122,6 @@ def login():
                 return redirect(url_for('profile'))
 
         flash('Invalid username or password')
-    
     return render_template('login.html', form = form)
 
 
