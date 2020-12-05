@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Kipwich{% endblock %}
+
+{% block page_content %}
+
+<h1>Update</h1>
+<form action= "/cupdate/{{activity_to_update.id}}" METHOD = "POST">
+	{{ form.hidden_tag() }}
+    {{ wtf.form_field(form.activity) }}
+    <button class="btn btn-secondary" type="submit"> Update </button>
+</form>
+{% endblock %}
+

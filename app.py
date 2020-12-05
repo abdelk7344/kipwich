@@ -22,6 +22,7 @@ app.config['UPLOAD_FOLDER2'] = video
 
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_BINDS']={'two':'sqlite:///community.db'}
 application = app
 Bootstrap(app)
 
@@ -50,6 +51,11 @@ class List(db.Model):
     activity=db.Column(db.String(500),nullable=False)
     owner_id= db.Column(db.Integer,db.ForeignKey('user.id'))
 
+class Community(db.Model):
+    __bind_key__='two'
+    id= db.Column(db.Integer,primary_key=True)
+    activity=db.Column(db.String(500),nullable=False)
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -68,6 +74,11 @@ class RegisterForm(FlaskForm):
 
 class ActivityForm(FlaskForm):
     activity = StringField('activity', validators=[InputRequired(), Length(min=4, max=500)])
+    submit = SubmitField('Add')
+
+class ActivityForm2(FlaskForm):
+    activity = StringField('activity', validators=[InputRequired(), Length(min=4, max=500)])
+    submit2 = SubmitField('Add')
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -129,7 +140,8 @@ def login():
 @login_required
 def profile():
     form = ActivityForm()
-    if form.validate_on_submit():
+    form2 = ActivityForm2()
+    if form.submit.data and form.validate():
         activity= form.activity.data
         user_to_add_to=User.query.get_or_404(current_user.id)
         new_activity=List(activity=activity, owner=user_to_add_to)
@@ -139,9 +151,20 @@ def profile():
             return redirect('/Profile')
         except:
             return "There was an error adding User"
+    elif form2.submit2.data and form2.validate():
+        print("here")
+        activity= form2.activity.data
+        new_activity=Community(activity=activity)
+        try:
+            db.session.add(new_activity)
+            db.session.commit()
+            return redirect('/Profile')
+        except:
+            return "There was an error adding Activity"
     else:
         all_activities=current_user.activities
-        return render_template('profile.html', user = current_user,form=form,all_activities= all_activities)
+        c_all_activities=Community.query
+        return render_template('profile.html', user = current_user,form=form,all_activities= all_activities,form2=form2,c_all_activities=c_all_activities)
 
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
@@ -170,6 +193,31 @@ def adelete(id):
     except:
         return "There was a problem deleting that activity"
 
+@app.route('/cupdate/<int:id>', methods=['GET', 'POST'])
+def cupdate(id):
+    form = ActivityForm()
+    activity_to_update= Community.query.get_or_404(id)
+    if form.validate_on_submit():
+        activity_to_update.activity=form.activity.data
+        try:
+            db.session.commit()
+            return redirect('/Profile')
+        except:
+            return "There was an error updating your activity"
+         
+    else:
+        return render_template('cupdate.html',activity_to_update=activity_to_update,form=form)
+
+
+@app.route('/cdelete/<int:id>')
+def cdelete(id):
+    activity_to_delete= Community.query.get_or_404(id)
+    try:
+        db.session.delete(activity_to_delete)
+        db.session.commit()
+        return redirect('/Profile')
+    except:
+        return "There was a problem deleting that activity"
 
 
 @app.route('/logout')
