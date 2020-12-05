@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Kipwich{% endblock %}
+
+{% block page_content %}
+
+
+<h1>Current Username: {{ username }}</h1>
+
+
+<h2>Change Username:</h2>
+
+<form class= "change_user" method = "POST" action = "/settings">
+		{{ form.hidden_tag()}}
+		{{ wtf.form_field(form.username) }}
+
+    <button class="btn btn-secondary" type="submit"> Update Username </button>
+	</form>
+
+{% endblock %}
+

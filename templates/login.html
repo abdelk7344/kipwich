@@ -12,15 +12,17 @@
     {{ wtf.form_field(form.username) }}
     {{ wtf.form_field(form.password) }} 
     {{ wtf.form_field(form.remember) }} 
+
+    {% with messages = get_flashed_messages() %}
+{% if messages %}
+	{{ messages[0] }} 
+{% endif %}
 	<button class="btn btn-primary" type="submit"> Sign In </button>
 	</form>
 </div>
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-	{{ messages[0] }} 
 
-{% endif %}
+
 {% endwith %}
 {% endblock %}
 

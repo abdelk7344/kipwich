@@ -67,6 +67,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=4, max=80)])
     remember = BooleanField('remember me')
 
+
+class UsernameForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+
+
 class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -225,6 +230,24 @@ def cdelete(id):
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+
+@app.route('/settings', methods = ['GET', 'POST'])
+def settings():
+    form = UsernameForm()
+    if form.validate_on_submit():
+        user_to_update= User.query.get_or_404(current_user.id)
+        user_to_update.username= form.username.data
+        try:
+            db.session.commit()
+            return redirect(url_for('settings'))
+        except: 
+            return "error updating username"
+     
+    user_to_update= User.query.get_or_404(current_user.id)
+    print("hey")
+    return render_template('settings.html', form = form, username = user_to_update.username, test=form.username.data)
+
 
 
 
