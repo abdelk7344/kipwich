@@ -6,7 +6,7 @@
 {% block page_content %}
 <div class="background-image">
 	<h1 class="donow"> If you don't do it now, you never will.</h1>
-	<form action="/action_page.php" class="cont" method = "POST" action = "/SignUp">
+	<form class="cont" method = "POST" action = "/SignUp">
 	<h1>Sign Up</h1>
 	{{ form.hidden_tag()}}
 	{{ wtf.form_field(form.email) }}

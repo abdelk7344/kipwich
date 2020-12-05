@@ -6,18 +6,15 @@
 
 <div class="login-background-image">
 	<h1 class="donow"> Stop Wasting Your Life!</h1>
-	<form action="/action_page.php" class="cont" method = "POST" action = "/Login">
+	<form class="cont" method = "POST" action = "/Login">
 	<h1>Sign In</h1>
-   {{ wtf.form_field(form.username) }}
-   {{ wtf.form_field(form.password) }} 
+	{{ form.hidden_tag()}}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.password) }} 
     {{ wtf.form_field(form.remember) }} 
 	<button class="btn btn-primary" type="submit"> Sign In </button>
 	</form>
 </div>
-
-
-
-
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
