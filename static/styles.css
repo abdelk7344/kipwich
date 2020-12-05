@@ -37,5 +37,51 @@
     text-align: center;
 }
 .form-signin{
-    border: ;
+    border: royalblue;
 }
+
+  
+  .btn:hover {
+    opacity: 1;
+  }
+
+  .background-image {
+    /* The image used */
+     background-image: url(image/mountain.jpg);
+    min-height: 1000;
+    min-width: 850;
+    left: auto;
+    right: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .cont{
+    position: absolute;
+    left: 20px;
+    max-width: 300px;
+    padding: 50px;
+    background-color: #21262794;
+    border-color: rgb(3, 5, 7);
+    border-width: 5px;
+  }
+
+  .donow{
+      text-align:center;
+      text-shadow: slategray;
+      
+  }
+  .login-background-image{
+    background-image: url(image/surfing.jpg);
+    min-height: 1000;
+    min-width: 850;
+    left: auto;
+    right: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+  }
