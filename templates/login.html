@@ -4,29 +4,17 @@
 
 {% block page_content %}
 
-
-<!-- <h1> LooGIN </h1>
-
-<form action= "/Profile" METHOD = "POST">
-	<input type = "text" placeholder ="Username" name = "User">
-	<input type = "text" placeholder ="Password" name = "Pass">
-	<input type = "submit" value= "Sign Up" class = "btn btn-secondary">
-</form> -->
-
-<h1> Stop wasting your life, login </h1>
-
-
-<form class= "form-signin" method = "POST" action = "/Login">
- {{ form.hidden_tag() }}
- {{ wtf.form_field(form.username) }}
-  {{ wtf.form_field(form.password) }} 
-   {{ wtf.form_field(form.remember) }} 
-
-
-
-   <button class="btn btn-secondary" type="submit"> Sign in </button>
-</form>
-
+<div class="login-background-image">
+	<h1 class="donow"> Stop Wasting Your Life!</h1>
+	<form class="cont" method = "POST" action = "/Login">
+	<h1>Sign In</h1>
+	{{ form.hidden_tag()}}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.password) }} 
+    {{ wtf.form_field(form.remember) }} 
+	<button class="btn btn-primary" type="submit"> Sign In </button>
+	</form>
+</div>
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
@@ -34,7 +22,5 @@
 
 {% endif %}
 {% endwith %}
-
-
-
 {% endblock %}
+
