@@ -9,13 +9,24 @@
 <form class= "" method = "POST" action = "/Profile">
     {{ form.hidden_tag() }}
     {{ wtf.form_field(form.activity) }}
-      <button class="btn btn-secondary" type="submit"> Add </button>
+    {{ form.submit }}
 </form>
 {%for activity in all_activities%}
 <li>{{activity.activity}}<a href="/update/{{activity.id}}" class="btn btn-outline_secondary"
   ><span class="glyphicon glyphicon-pencil" aria-hidden="true">Update</a><a href="/delete/{{activity.id}}" class="btn btn-outline_secondary"
   ><span class="glyphicon glyphicon-remove" aria-hidden="true">Delete</a></li>
 {%endfor%}
-
+<br><br><br>
+<h1>Community Bucket List</h1>
+<form class= "" method = "POST" action = "/Profile">
+  {{ form2.hidden_tag() }}
+  {{ wtf.form_field(form2.activity) }}
+  {{ form2.submit2 }}
+</form>
+{%for activity in c_all_activities%}
+<li>{{activity.activity}}<a href="/cupdate/{{activity.id}}" class="btn btn-outline_secondary"
+  ><span class="glyphicon glyphicon-pencil" aria-hidden="true">Update</a><a href="/cdelete/{{activity.id}}" class="btn btn-outline_secondary"
+  ><span class="glyphicon glyphicon-remove" aria-hidden="true">Delete</a></li>
+{%endfor%}
 
 {% endblock %}
