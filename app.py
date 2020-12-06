@@ -69,7 +69,13 @@ class LoginForm(FlaskForm):
 
 
 class UsernameForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    username = StringField('new username', validators=[InputRequired(), Length(min=4, max=15)])
+
+
+class PasswordForm(FlaskForm):
+    currentpassword = StringField('current password', validators=[InputRequired(), Length(min=4, max=15)])
+    newpassword = StringField('new password', validators=[InputRequired(), Length(min=4, max=15)])
+    confirm = StringField('re-enter new password', validators=[InputRequired(), Length(min=4, max=15)])
 
 
 class RegisterForm(FlaskForm):
@@ -233,20 +239,60 @@ def logout():
 
 
 @app.route('/settings', methods = ['GET', 'POST'])
+@login_required
 def settings():
     form = UsernameForm()
-    if form.validate_on_submit():
-        user_to_update= User.query.get_or_404(current_user.id)
-        user_to_update.username= form.username.data
-        try:
-            db.session.commit()
-            return redirect(url_for('settings'))
-        except: 
-            return "error updating username"
-     
+    form2 = PasswordForm()
+
+    user_to_update= User.query.get_or_404(current_user.id)
+
+
+
+
+    if form2.validate_on_submit():
+
+        if check_password_hash(user_to_update.password,form2.currentpassword.data):
+            if (form2.newpassword.data==form2.confirm.data):
+                user_to_update.password = generate_password_hash(form2.newpassword.data, method = 'sha256')
+                try:
+                    db.session.commit()
+                    return redirect(url_for('settings'))
+                except: 
+                    return "error updating username"
+            else: 
+                flash('Passwords do not match', "pass")
+        else:
+            flash('Current password incorrect', "pass")    
+
+
+
+    if form.is_submitted():
+        if (form.data['username']):
+
+            user_to_update.username= form.username.data
+            try:
+                db.session.commit()
+                return redirect(url_for('settings'))
+            except: 
+                return "error updating username"
+    # if form2.validate_on_submit():
+    #     print("validated")
+    #     if check_password_hash(user_to_update.password,form2.currentpassword.data):
+    #         if (form2.newpassword.data==form2.confirm.data):
+    #             user_to_update.password = generate_password_hash(form2.newpassword.data, method = 'sha256')
+    #             try:
+    #                 db.session.commit()
+    #                 return redirect(url_for('settings'))
+    #             except: 
+    #                 return "error updating username"
+    #         else: 
+    #             flash('Passwords do not match', "pass")
+    #     else:
+    #         flash('Current password incorrect', "pass")
+  
     user_to_update= User.query.get_or_404(current_user.id)
     print("hey")
-    return render_template('settings.html', form = form, username = user_to_update.username, test=form.username.data)
+    return render_template('settings.html', form = form, form2= form2, username = user_to_update.username, test=form.username.data)
 
 
 
