@@ -3,31 +3,35 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-
-
-<h1> If your burgerking foot lettuce looks like this, yikes {{ user.name }}</h1>
-
-
-<form class= "" method = "POST" action = "/Profile">
-    {{ form.hidden_tag() }}
-    {{ wtf.form_field(form.activity) }}
-    {{ form.submit }}
-</form>
-{%for activity in all_activities%}
-<li>{{activity.activity}} <a href="/update/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/delete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
-{%endfor%}
-<br><br><br>
-<h1>Community Bucket List</h1>
-<form class= "" method = "POST" action = "/Profile">
-  {{ form2.hidden_tag() }}
-  {{ wtf.form_field(form2.activity) }}
-  {{ form2.submit2 }}
-</form>
-{%for activity in c_all_activities%}
-<li>{{activity.activity}} <a href="/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
-{%endfor%}
-
+<link rel="stylesheet" href="{{ url_for('static', filename =  'profile.css') }}" >
+<h1> If your burgerking foot lettuce looks like this, yikes </h1>
+<div class="parent">
+  <div class= "child" >
+    <h1>  Hi {{ user.username }}! <br> Add to Your List </h1>
+    <form method = "POST" action = "/Profile">
+      {{ form.hidden_tag() }}
+      {{ wtf.form_field(form.activity) }}
+      {{ form.submit }}
+    </form>
+    {%for activity in all_activities%}
+      <li>{{activity.activity}} <a href="/update/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/delete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
+    {%endfor%}
+  </div>
+  <div class= "child" >
+    <h1><br>Community Bucket List</h1>
+      <form method = "POST" action = "/Profile">
+        {{ form2.hidden_tag() }}
+        {{ wtf.form_field(form2.activity) }}
+        {{ form2.submit2 }}
+      </form>
+      {%for activity in c_all_activities%}
+        <li>{{activity.activity}} <a href="/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
+      {%endfor%}
+  </div>
+</div>
 {% endblock %}
+
+
 {% block scripts %}
     <script>
         $("#login").hide(); 
