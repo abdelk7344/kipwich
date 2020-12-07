@@ -8,7 +8,7 @@
 <div class="parent">
   <div class= "child" >
     <h1>  Hi {{ user.username }}! <br> Add to Your List </h1>
-    <form method = "POST" action = "/Profile">
+    <form method = "POST" action = "/Profile" class = "yams">
       {{ form.hidden_tag() }}
       {{ wtf.form_field(form.activity) }}
       {{ form.submit }}
@@ -19,10 +19,10 @@
   </div>
   <div class= "child" >
     <h1><br>Community Bucket List</h1>
-      <form method = "POST" action = "/Profile">
+      <form method = "POST" action = "/Profile" class = "yams">
         {{ form2.hidden_tag() }}
         {{ wtf.form_field(form2.activity) }}
-        {{ form2.submit2 }}
+{{ form2.submit2 }}
       </form>
       {%for activity in c_all_activities%}
         <li>{{activity.activity}} <a href="/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
