@@ -9,16 +9,28 @@
 
         <div class="header-content">
             <h1 class="head"> KIPWICH </h1>
-            <img class="img-fluid" alt="Responsive image" src="{{ user_image}}" >
+            <img class="img-fluid" alt="Responsive image" src="{{url_for('static', filename ='image/home2.jpg')}}" >
             <h2 class="head2"> Exciting Adventures Await</h2>
             <h3> Make a bucket list and fill it with dreams that have no boundaries!</h3>
-            <a href="{{ url_for('signup') }}"  class="btn btn-primary"> Sign Up Today </a> 
-            <a href="{{ url_for('login') }}"  class="btn btn-primary"> Login </a> 
+            <a href="{{ url_for('signup')}}"  class="btn btn-primary"> Sign Up Today </a> 
+            <a href="{{ url_for('login')}}"  class="btn btn-primary"> Login </a> 
         </div>
  
             
 
 </body>
+
+{% endblock %}
+
+{% block scripts %}
+    <p hidden>{{user}}</p>
+    <script>
+        $(document).ready(function(){
+            $("#logout").hide(); 
+            $("#profile").hide();
+            $("#settings").hide();  
+        });
+    </script>
 
 {% endblock %}
 

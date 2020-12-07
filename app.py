@@ -103,9 +103,7 @@ def internal_server_error(e):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    vid1 = os.path.join(app.config['UPLOAD_FOLDER2'], 'beach.mp4')
-    img1 = os.path.join(app.config['UPLOAD_FOLDER'] , 'home2.jpg')
-    return render_template('index.html' , user_image = img1 , user_video = vid1) 
+    return render_template('index.html',user=current_user) 
     
 
 @app.route('/Home', methods=['GET', 'POST'])
