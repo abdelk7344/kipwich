@@ -25,17 +25,15 @@
 {% block scripts %}
     <p hidden id="check">{{user.username}}</p>
     <script>
-        $(document).ready(function(){
-            if($("#check").text()==""){
-                $("#logout").hide(); 
-                $("#profile").hide();
-                $("#settings").hide();  
-            }
-            else{
-                $("#signup").hide(); 
-                $("#login").hide();
-            }
-        });
+        if($("#check").text()==""){
+            $("#logout").hide(); 
+            $("#profile").hide();
+            $("#settings").hide();  
+        }
+        else{
+            $("#signup").hide(); 
+            $("#login").hide();
+        }
     </script>
 {% endblock %}
 
