@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Kipwich{% endblock %}
+
+{% block page_content %}
+
+
+<h1>Current Username: {{ username }}</h1>
+
+
+<h2>Change Username</h2>
+
+
+<form class= "change_user" method = "POST" action = "/settings" form id="test">
+		{{ form.hidden_tag() }}
+		{{ wtf.form_field(form.username) }}
+
+    <button class="btn btn-secondary" type="submit" form = "test"> Update Username </button>
+	</form>
+
+
+
+
+<h2>Change Password</h2>
+
+
+<form class= "change_pass" method = "POST" action = "/settings" form id="better">
+		{{ form2.hidden_tag() }}
+		{{ wtf.form_field(form2.currentpassword) }}
+		{{ wtf.form_field(form2.newpassword) }}
+		{{ wtf.form_field(form2.confirm) }}
+
+
+
+{% with errors = get_flashed_messages(category_filter=["pass"]) %}
+{% if errors %}
+    {% for msg in errors %}
+
+<h6>{{ msg }}</h6>
+    {% endfor %}
+
+
+{% endif %}
+{% endwith %}
+
+
+
+
+    <button class="btn btn-secondary" type="submit" form = "better"> Update Password </button>
+	</form>
+
+
+
+{% endblock %}
+

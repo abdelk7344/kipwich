@@ -1,14 +1,5 @@
-*{
-	font-family: "Times New Roman", Times, serif;
-    }
-*{
-    box-sizing: border-box;
-}
-  
-
 .head {
-    color: #3f77c2;
-    font-size: 100px;
+    font-size: 150px;
     margin-top: 20px;
     text-align: center;
     align-content: center;
@@ -18,11 +9,8 @@
     
 }
 .head2{
-    text-decoration-color: indigo;
-    text-align: right;
     font-size: 60px;
     text-align: center;
-    flex-direction: column-reverse;
 }
 
 .img-fluid {
@@ -32,18 +20,39 @@
     width: 50%;
 }        
 .body {
+    
     background-color: #cccccc;
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #333;
-    overflow-x: hidden;
+ 
 }
 
 .container{
-    max-width: 1000px;
-    padding-left:1rem;
-    padding-right: 1rem;
-    margin: auto;
     text-align: center;
+}
+.form-signin{
+    border: royalblue;
+}
+
+  
+.btn:hover {
+  opacity: 1;
+}
+
+.cont{
+  color: white;
+  max-width: 300px;
+  padding: 50px;
+  background-color: #21262794;
+  border-color: rgb(3, 5, 7);
+  border-width: 5px;
+  margin: auto;
+}
+
+.donow{
+  text-align:center;
+  color:white;
+  border: 4px solid white;
+  display:table;
+  margin: 50 auto;
+  padding: 0 10px;
+    
 }
