@@ -1,58 +1,43 @@
 {% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% block title %}Kipwich{% endblock %}
+{% block title %}About Us{% endblock %}
 
 {% block page_content %}
-
 <link rel="stylesheet" href="{{ url_for('static', filename =  'about.css') }}" >
-
-<h1 style="border: 10px; text-align: center; color: aliceblue;">KIPWICHIANS</h1>
-
-<div>
-    <p style="float: left;"><img src="static/image/abdel.jpg" height="300px" width="300px" border ="10px"></p>
-    <p style="color: aliceblue; font-size: medium; background-color:#0062cc63;"> Hi Guys! I am Abdel. I am a junior at the University of Rochester. I am Computer Science Major. One fun fact about me is that I love fishing.</p>
+<div class="container">
+  <h1>The Kipwich Story!<h1>
+  <p>Abdel casually mentioned one day that he had never eaten the sweet dairy deliciousness known as a chipwich.  I cried out, “You fool!  You’d better add it to your bucket list.”  Thus, Kipwich was born.  Here at Kipwich, we are all about focusing on today because nobody knows if they’ll be here tomorrow.  Life is short, and we firmly believe that everybody should do what they want to while they still have the chance.  We’re all gonna kick the bucket sooner or later.  But before this time comes, we would like to kick you in the pants and tell you to live life to the fullest right now.</p>
 </div>
-
-<div style="clear: left;">
-    <p style="float: left;"><img src="static/image/jordan.jpg" height="300" width="300" border ="10px"></p>
-    <p style="color: aliceblue; font-size: medium; background-color:#0062cc63;"> Hi Guys! I am Jordan. I am a junior at the University of Rochester. I am Computer Science Major. One fun fact about me is that I love fishing.</p>
-</div>
-
-<div style="clear: left;">
-    <p style="float: left;"><img src="static/image/piyush.jpg" height="300" width="300" border ="10px"></p>
-    <p style="color: aliceblue; font-size: medium; background-color:#0062cc63;"> Hi Guys! I am Piyush. I am a junior at the University of Rochester. I am Computer Science Major. I love coding.</p>
-</div>
-
-
-  
-  
-  <!-- Team Container -->
-  <!-- <div class="w3-container w3-padding-64 w3-center" id="team">
-  <h2>OUR TEAM</h2>
-  <p>Meet the team - our office rats:</p>
-  
-  <div class="w3-row"><br>
-  
-  <div class="w3-quarter">
-    <img src="static/image/abdel.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+<h1>About Us</h1>
+<div class= "parent">
+  <div class= "child">
+    <img src="static/image/abdel.jpg">
+    <br>
     <h3>Abdel</h3>
   </div>
-  
-  <div class="w3-quarter">
-    <img src="static/image/jordan.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <div class= "child">
+    <img src="static/image/jordan.jpg">
+    <br>
     <h3>Jordan</h3>
   </div>
-  
-  <div class="w3-quarter">
-    <img src="static/image/piyush.jpg" alt="Boss" style="width:45%" class="w3-circle w3-hover-opacity">
+  <div class= "child">
+    <img src="static/image/piyush.jpg">
+    <br>
     <h3>Piyush</h3>
-
   </div>
-  
-  
-  </div>
-  </div> -->
-
-
+</div>
 {% endblock %}
 
+{% block scripts %}
+<p hidden id="check">{{user.username}}</p>
+<script>
+  if($("#check").text()==""){
+    $("#logout").hide(); 
+    $("#profile").hide();
+    $("#settings").hide();  
+  }
+  else{
+    $("#signup").hide(); 
+    $("#login").hide();
+  }  
+</script>
+{% endblock %}

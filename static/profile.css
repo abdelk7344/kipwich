@@ -1,11 +1,10 @@
-
 body{
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(image/beach.jpg) no-repeat center center fixed; ;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(image/beach.jpg) no-repeat center center fixed; ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 h1{
   text-align:center; 
@@ -15,15 +14,17 @@ h1{
 
 .parent{
   display: flex;
+  text-align: center;
+  margin:30px 10%;
 }
 .child{
+  flex: 1;
   color: white;
   background-color: #21262794;
   border-color: rgb(3, 5, 7);
-  flex: 1;
   border-width: 5px;
   padding: 50px;
 }
 .child:first-child {
-  margin-right: 20px;
+  margin-right: 5%;
 }  

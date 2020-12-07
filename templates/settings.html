@@ -1,129 +1,64 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %}Kipwich{% endblock %}
+{% block title %}Settings{% endblock %}
 
 {% block page_content %}
 <style>
-
-
-
-
-
-
-
 #ha{
-				background-color: white;
-			border: none;
-
-
+	background-color: white;
+	border: none;
 }
-
-
-		#ba{
-			background-color: lightblue;
-			border: none;
-
+#ba{
+	background-color: lightblue;
+	border: none;
 }
-
-
-		#ca{
-			background-color: lightgrey;
-			border: none;
-
+#ca{
+	background-color: lightgrey;
+	border: none;
 }
-		#da{
-			background-color: pink;
-			border: none;
-
+#da{
+	background-color: pink;
+	border: none;
 }
-
-
 
 form {
-margin: 0 auto; 
- width: 250px;
-
+	margin: 0 auto; 
+	width: 250px;
 }
 .lol{
 	margin: 0 auto; 
- width: 550px;
-
+	width: 550px;
 }
-
-	</style>
-
-
-<br>
-<br>
-<br>
-
-
-<h1>Background color</h1>
-
-<form name="colors" method="post" action="/background" class = "lol">
-
-<p>
-
-	
-<input type="submit"  name="btn" value="white" class = "btn btn-light" id="ha">
-<input type="submit"  name="btn" value="lightblue" class = "btn btn-light" id = ba>
-<input type="submit"  name="btn" value="lightgrey" class = "btn btn-light" id = ca>
-<input type="submit"  name="btn" value="pink" class = "btn btn-light" id = da>
-</form>
-<br>
-<br>
-<br>
-
-<h1>Current Username: {{ username }}</h1>
-
-
-
-
-<!-- 
-	#ha{
-	background-color: white;
-	border: none;
-	}
-	#ba{
-		background-color: lightblue;
-		border: none;
-	}
-	#ca{
-		background-color: lightgrey;
-		border: none;
-	}
-	#da{
-		background-color: pink;
-		border: none;
-	}
 </style>
+
 <br>
 <br>
-<center><h6>Background Color</h6></center>
-<form name="colors" method="post" action="/background">
+<br>
+<div class="centerIt">
+<h1>Background color</h1>
+<form name="colors" method="post" action="/background" class = "lol">
 	<input type="submit"  name="btn" value="white" class = "btn btn-light" id="ha">
 	<input type="submit"  name="btn" value="lightblue" class = "btn btn-light" id = ba>
 	<input type="submit"  name="btn" value="lightgrey" class = "btn btn-light" id = ca>
 	<input type="submit"  name="btn" value="pink" class = "btn btn-light" id = da>
 </form>
+
+<br>
+<br>
+<br>
+
 <h1>Current Username: {{ username }}</h1>
-<h2>Change Username</h2> -->
 <form class= "change_user" method = "POST" action = "/settings" form id="test">
 	{{ form.hidden_tag() }}
 	{{ wtf.form_field(form.username) }}
     <button class="btn btn-secondary" type="submit" form = "test"> Update Username </button>
 </form>
 
-
 <br>
 <br>
 <br>
-
-
-
 
 <h1>Change Password</h1>
-
 <form class= "change_pass" method = "POST" action = "/settings" form id="better">
 	{{ form2.hidden_tag() }}
 	{{ wtf.form_field(form2.currentpassword) }}
@@ -138,14 +73,14 @@ margin: 0 auto;
 	{% endwith %}
     <button class="btn btn-secondary" type="submit" form = "better"> Update Password </button>
 </form>
+</div>
 {% endblock %}
 
 {% block scripts %}
-    <p hidden id="check">{{user.background}}</p>
-    <script>
-        console.log($("#check").text());
-        document.body.style.backgroundColor = $("#check").text();
-        $("#login").hide();
-        $("#signup").hide(); 
-    </script>
+<p hidden id="check">{{user.background}}</p>
+<script>
+	document.body.style.backgroundColor = $("#check").text();
+    $("#login").hide();
+    $("#signup").hide(); 
+</script>
 {% endblock %}
