@@ -6,87 +6,24 @@ body{
     -o-background-size: cover;
     background-size: cover;
   }
-  .con {
-    width:900px; 
-    height: 150px;
-  }
-  
-  header {
-    width:900px; 
-    float:left; 
-    background: rgb(243, 243, 243); 
-    height: 50px;
-  }
-  
-  .logo {
-    float: left;
-    padding: 15px
-  }
-  
-  .menu {
-    float: right;
-    padding: 15px
-  }
-  
-  .first-box {
-    width:300px; 
-    float:left; 
-    background: rgb(255, 255, 255); 
-    height: 150px;
-    margin: 50px
-  }
-  
-  .first-box p {
-    color: #ffffff;
-    padding-left: 80px;
-    padding-top: 50px;
-  }
-  
-  .second-box {
-    width:300px; 
-    height: 150px; 
-    float:right; 
-    background: rgb(245, 245, 245); 
-    margin: 50px
-  }
-  
-  .second-box p {
-    color: #ffffff;
-    padding-left: 110px;
-    padding-top: 50px;
-  }
-  
-  footer {
-    width:900px; 
-    float:left; 
-    background: black; 
-    height: 50px;
-    color: #ffffff;
-  }
-  
-  footer div {
-    padding: 15px;
-  }
-  .cont1 {
-    color: white;
-    max-width: 300px;
-    padding: 100px;
-    background-color: #21262794;
-    border-color: rgb(3, 5, 7);
-    border-width: 5px;
-    margin: auto;
-  }
-  .cont2 {
-    color: white;
-    max-width: 300px;
-    padding: 100px;
-    background-color: #21262794;
-    border-color: rgb(3, 5, 7);
-    border-width: 5px;
-    margin: auto;
-  }
-  .Activity{
-      text-align: left;
-      size: 90px;
-      color: snow;
-  }
+
+h1{
+  text-align:center; 
+  color:white;
+  margin:30px 0px;
+}
+
+.parent{
+  display: flex;
+}
+.child{
+  color: white;
+  background-color: #21262794;
+  border-color: rgb(3, 5, 7);
+  flex: 1;
+  border-width: 5px;
+  padding: 50px;
+}
+.child:first-child {
+  margin-right: 20px;
+}  

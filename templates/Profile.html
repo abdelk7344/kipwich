@@ -4,48 +4,33 @@
 
 {% block page_content %}
 <link rel="stylesheet" href="{{ url_for('static', filename =  'profile.css') }}" >
-
-
-<div class="con">
-
-  <header>
-    <h1> If your burgerking foot lettuce looks like this, yikes </h1>
-  </header>
-
-  <div class="first-box">
-    <h1>  Hi {{ user.username }} <br> Add to Your List </h1>
-    <form class= "cont1" method = "POST" action = "/Profile">
-        {{ form.hidden_tag() }}
-        {{ wtf.form_field(form.activity) }}
-        {{ form.submit }}
+<h1> If your burgerking foot lettuce looks like this, yikes </h1>
+<div class="parent">
+  <div class= "child" >
+    <h1>  Hi {{ user.username }}! <br> Add to Your List </h1>
+    <form method = "POST" action = "/Profile">
+      {{ form.hidden_tag() }}
+      {{ wtf.form_field(form.activity) }}
+      {{ form.submit }}
     </form>
-   <div class="Activity">
     {%for activity in all_activities%}
-    <li>{{activity.activity}} <a href="/update/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/delete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
+      <li>{{activity.activity}} <a href="/update/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/delete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
     {%endfor%}
-   </div> 
   </div>
-
-  <div class="second-box">
-    
-      <h1>Community Bucket List</h1>
-      <form class= "cont2" method = "POST" action = "/Profile">
+  <div class= "child" >
+    <h1><br>Community Bucket List</h1>
+      <form method = "POST" action = "/Profile">
         {{ form2.hidden_tag() }}
         {{ wtf.form_field(form2.activity) }}
         {{ form2.submit2 }}
       </form>
-      <div class="Activity">
       {%for activity in c_all_activities%}
-      <li>{{activity.activity}} <a href="/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
+        <li>{{activity.activity}} <a href="/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
       {%endfor%}
-      </div>
   </div>
-  {% endblock %}
-  <footer>
-    <div>Website Info</div>
-  </footer>
-
 </div>
+{% endblock %}
+
 
 {% block scripts %}
     <script>
