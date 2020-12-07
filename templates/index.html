@@ -14,7 +14,9 @@
 
 {% block scripts %}
 <p hidden id="check">{{user.username}}</p>
+<p hidden id="check2">{{user.background}}</p>
 <script>
+        document.body.style.backgroundColor= $("#check2").text();
     if($("#check").text()==""){
         $("#logout").hide(); 
         $("#profile").hide();
