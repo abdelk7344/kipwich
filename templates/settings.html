@@ -5,6 +5,21 @@
 {% block page_content %}
 
 
+<div id= "genre">
+Which color would you like to see?
+<br>
+<br>
+<form name="music" method="post" action="">
+<p>
+<input type="button"  value="blue" onClick="changeColour('b')">
+<input type="button"  value="grey" onClick="changeColour('g')">
+<input type="button"  value="pink" onClick="changeColour('p')">
+<input type="button"  value="white" onClick="changeColour('w')">
+<br>
+</form>
+</div>
+
+
 <h1>Current Username: {{ username }}</h1>
 
 
@@ -36,7 +51,7 @@
 {% if errors %}
     {% for msg in errors %}
 
-	<p class="flash">{{ msg }}</p>
+<h6>{{ msg }}</h6>
     {% endfor %}
 
 
@@ -54,7 +69,30 @@
 {% endblock %}
 
 {% block scripts %}
+
+
     <script>
+    	window.changeColour = function(value)
+{
+
+    var color = document.body.style.backgroundColor;
+    switch(value)
+    {
+        case 'w':
+            color = "white";
+        break;
+         case 'b':
+            color = "lightblue";
+        break;
+        case 'g':
+            color = "lightgrey";
+        break;
+        case 'p':
+            color = "pink";
+        break;
+    }
+    document.body.style.backgroundColor = color;
+}
         $("#login").hide(); 
         $("#signup").hide(); 
     </script>

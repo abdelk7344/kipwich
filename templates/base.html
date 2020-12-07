@@ -1,5 +1,6 @@
 {% block head %}
 
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <!-- bootstrap -->
@@ -32,11 +33,51 @@
   </nav>
 {% endblock %}
 {% block scripts %}
+<script>
+window.changeColour = function(value)
+{
+
+    var color = document.body.style.backgroundColor;
+    switch(value)
+    {
+        case 'b':
+            color = "#FF0000";
+        break;
+        case 'r':
+            color = "#0000FF";
+        break;
+        case 'p':
+            color = "#FF00FF";
+        break;
+    }
+    document.body.style.backgroundColor = color;
+}
+</script>
+
 {% endblock %}
 
 {% block content %}
+
+
+
 <div class="container">
-    {% block page_content %}{% endblock %}
+    {% block page_content %}
+<div id= "genre">
+What do you bust a move to?
+<br>
+<br>
+<form name="music" method="post" action="">
+<p>
+<input type="radio" name="music" value="radio" onClick="changeColour('b')">Blues
+<br>
+<input type="radio" name="music" value="radio" onClick="changeColour('r')">Rock
+<br>
+<input type="radio" name="music" value="radio" onClick="changeColour('p')">Pop
+<br>
+</form>
+</div>
+
+    {% endblock %}
 </div>
 {% endblock %}
 
