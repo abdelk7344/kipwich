@@ -3,107 +3,56 @@
 {% block title %}Kipwich{% endblock %}
 
 {% block page_content %}
-
-
 <style>
-
-
-
-#ha{
-				background-color: white;
-			border: none;
-
-
-}
-
-
-		#ba{
-			background-color: lightblue;
-			border: none;
-
-}
-
-
-		#ca{
-			background-color: lightgrey;
-			border: none;
-
-}
-		#da{
-			background-color: pink;
-			border: none;
-
-}
-
-
-	</style>
-
-
-
-Which color would you like to see?
+	#ha{
+	background-color: white;
+	border: none;
+	}
+	#ba{
+		background-color: lightblue;
+		border: none;
+	}
+	#ca{
+		background-color: lightgrey;
+		border: none;
+	}
+	#da{
+		background-color: pink;
+		border: none;
+	}
+</style>
 <br>
 <br>
-
+<center><h6>Background Color</h6></center>
 <form name="colors" method="post" action="/background">
-
-<p>
-
-	
-<input type="submit"  name="btn" value="white" class = "btn btn-light" id="ha">
-<input type="submit"  name="btn" value="lightblue" class = "btn btn-light" id = ba>
-<input type="submit"  name="btn" value="lightgrey" class = "btn btn-light" id = ca>
-<input type="submit"  name="btn" value="pink" class = "btn btn-light" id = da>
-<br>
+	<input type="submit"  name="btn" value="white" class = "btn btn-light" id="ha">
+	<input type="submit"  name="btn" value="lightblue" class = "btn btn-light" id = ba>
+	<input type="submit"  name="btn" value="lightgrey" class = "btn btn-light" id = ca>
+	<input type="submit"  name="btn" value="pink" class = "btn btn-light" id = da>
+</form>
+<h1>Current Username: {{ username }}</h1>
+<h2>Change Username</h2>
+<form class= "change_user" method = "POST" action = "/settings" form id="test">
+	{{ form.hidden_tag() }}
+	{{ wtf.form_field(form.username) }}
+    <button class="btn btn-secondary" type="submit" form = "test"> Update Username </button>
 </form>
 
-
-
-<h1>Current Username: {{ username }}</h1>
-
-
-<h2>Change Username</h2>
-
-
-<form class= "change_user" method = "POST" action = "/settings" form id="test">
-		{{ form.hidden_tag() }}
-		{{ wtf.form_field(form.username) }}
-
-    <button class="btn btn-secondary" type="submit" form = "test"> Update Username </button>
-	</form>
-
-
-
-
 <h2>Change Password</h2>
-
-
 <form class= "change_pass" method = "POST" action = "/settings" form id="better">
-		{{ form2.hidden_tag() }}
-		{{ wtf.form_field(form2.currentpassword) }}
-		{{ wtf.form_field(form2.newpassword) }}
-		{{ wtf.form_field(form2.confirm) }}
-
-
-
-{% with errors = get_flashed_messages(category_filter=["pass"]) %}
-{% if errors %}
-    {% for msg in errors %}
-
-<h6>{{ msg }}</h6>
-    {% endfor %}
-
-
-{% endif %}
-{% endwith %}
-
-
-
-
+	{{ form2.hidden_tag() }}
+	{{ wtf.form_field(form2.currentpassword) }}
+	{{ wtf.form_field(form2.newpassword) }}
+	{{ wtf.form_field(form2.confirm) }}
+	{% with errors = get_flashed_messages(category_filter=["pass"]) %}
+		{% if errors %}
+    		{% for msg in errors %}
+				<h6>{{ msg }}</h6>
+    		{% endfor %}
+		{% endif %}
+	{% endwith %}
     <button class="btn btn-secondary" type="submit" form = "better"> Update Password </button>
-	</form>
-
-
-
+</form>
 {% endblock %}
 
 {% block scripts %}
