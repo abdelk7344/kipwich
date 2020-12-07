@@ -9,6 +9,7 @@
 
 
 
+
 #ha{
 				background-color: white;
 			border: none;
@@ -36,15 +37,25 @@
 }
 
 
+
+form {
+margin: 0 auto; 
+ width: 250px;
+
+}
+.lol{
+	margin: 0 auto; 
+ width: 550px;
+
+}
+
 	</style>
 
 
 
 Which color would you like to see?
-<br>
-<br>
 
-<form name="colors" method="post" action="/background">
+<form name="colors" method="post" action="/background" class = "lol">
 
 <p>
 
@@ -56,12 +67,12 @@ Which color would you like to see?
 <br>
 </form>
 
-
+<br>
+<br>
 
 <h1>Current Username: {{ username }}</h1>
 
 
-<h2>Change Username</h2>
 
 
 <form class= "change_user" method = "POST" action = "/settings" form id="test">
@@ -74,7 +85,10 @@ Which color would you like to see?
 
 
 
-<h2>Change Password</h2>
+<br>
+<br>
+<br>
+<br>
 
 
 <form class= "change_pass" method = "POST" action = "/settings" form id="better">
