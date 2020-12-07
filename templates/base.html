@@ -1,6 +1,4 @@
 {% block head %}
-
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <!-- bootstrap -->
@@ -10,12 +8,11 @@
 
 <!-- CSS Style -->
 <link rel="stylesheet" href="{{ url_for('static', filename =  'styles.css') }}" >
-
 <link rel="icon" type="text/css" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<title>{% block title %}{% endblock %}</title>
 {% endblock %}
 
 {% block navbar %}
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{{ url_for('index') }}">Kipwich</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,59 +24,18 @@
         <a id="login" class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
         <a id="profile" class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
         <a id="settings"class="nav-item nav-link" href="{{ url_for('settings') }}">Settings</a>
-        <a id="logout" class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
         <a id="AboutUs" class="nav-item nav-link" href="{{ url_for('AboutUs') }}">About Us</a>
+        <a id="logout" class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
       </div>
     </div>
   </nav>
 {% endblock %}
+
 {% block scripts %}
-<script>
-window.changeColour = function(value)
-{
-
-    var color = document.body.style.backgroundColor;
-    switch(value)
-    {
-        case 'b':
-            color = "#FF0000";
-        break;
-        case 'r':
-            color = "#0000FF";
-        break;
-        case 'p':
-            color = "#FF00FF";
-        break;
-    }
-    document.body.style.backgroundColor = color;
-}
-</script>
-
 {% endblock %}
 
-{% block content %}
-
-
-
-<div class="container">
-    {% block page_content %}
-<div id= "genre">
-What do you bust a move to?
-<br>
-<br>
-<form name="music" method="post" action="">
-<p>
-<input type="radio" name="music" value="radio" onClick="changeColour('b')">Blues
-<br>
-<input type="radio" name="music" value="radio" onClick="changeColour('r')">Rock
-<br>
-<input type="radio" name="music" value="radio" onClick="changeColour('p')">Pop
-<br>
-</form>
-</div>
-
-    {% endblock %}
-</div>
+{%block page_content%}
 {% endblock %}
+
 
 

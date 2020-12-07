@@ -11,15 +11,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import os
 
-
-
 app = Flask(__name__)
 
 image = os.path.join('static', 'image')
 app.config['UPLOAD_FOLDER'] = image
-video = os.path.join('static', 'video')
-app.config['UPLOAD_FOLDER2'] = video
-
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_BINDS']={'two':'sqlite:///community.db'}
@@ -243,12 +238,7 @@ def settings():
     form2 = PasswordForm()
 
     user_to_update= User.query.get_or_404(current_user.id)
-
-
-
-
     if form2.validate_on_submit():
-
         if check_password_hash(user_to_update.password,form2.currentpassword.data):
             if (form2.newpassword.data==form2.confirm.data):
                 user_to_update.password = generate_password_hash(form2.newpassword.data, method = 'sha256')
@@ -261,9 +251,6 @@ def settings():
                 flash('Passwords do not match', "pass")
         else:
             flash('Current password incorrect', "pass")    
-
-
-
     if form.is_submitted():
         if (form.data['username']):
 
@@ -273,21 +260,6 @@ def settings():
                 return redirect(url_for('settings'))
             except: 
                 return "error updating username"
-    # if form2.validate_on_submit():
-    #     print("validated")
-    #     if check_password_hash(user_to_update.password,form2.currentpassword.data):
-    #         if (form2.newpassword.data==form2.confirm.data):
-    #             user_to_update.password = generate_password_hash(form2.newpassword.data, method = 'sha256')
-    #             try:
-    #                 db.session.commit()
-    #                 return redirect(url_for('settings'))
-    #             except: 
-    #                 return "error updating username"
-    #         else: 
-    #             flash('Passwords do not match', "pass")
-    #     else:
-    #         flash('Current password incorrect', "pass")
-  
     user_to_update= User.query.get_or_404(current_user.id)
     return render_template('settings.html', form = form, form2= form2, username = user_to_update.username, test=form.username.data, user=current_user)
 
