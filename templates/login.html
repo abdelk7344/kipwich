@@ -16,7 +16,7 @@
 
     {% with messages = get_flashed_messages() %}
 		{% if messages %}
-			{{ messages[0] }} 
+			<p class="flash">{{messages[0]}}</p> 
 		{% endif %}
 	{% endwith %}
 	<button class="btn btn-primary" type="submit"> Sign In </button>
