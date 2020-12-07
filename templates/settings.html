@@ -74,7 +74,7 @@ Which color would you like to see?
 
 
 
-
+<!-- 
 	#ha{
 	background-color: white;
 	border: none;
@@ -102,8 +102,7 @@ Which color would you like to see?
 	<input type="submit"  name="btn" value="pink" class = "btn btn-light" id = da>
 </form>
 <h1>Current Username: {{ username }}</h1>
-<h2>Change Username</h2>
->>>>>>> fd4a7725e60b288de0ed8ee7b0474f54be1e2162
+<h2>Change Username</h2> -->
 <form class= "change_user" method = "POST" action = "/settings" form id="test">
 	{{ form.hidden_tag() }}
 	{{ wtf.form_field(form.username) }}
@@ -119,7 +118,7 @@ Which color would you like to see?
 
 
 <h2>Change Password</h2>
->>>>>>> fd4a7725e60b288de0ed8ee7b0474f54be1e2162
+
 <form class= "change_pass" method = "POST" action = "/settings" form id="better">
 	{{ form2.hidden_tag() }}
 	{{ wtf.form_field(form2.currentpassword) }}
