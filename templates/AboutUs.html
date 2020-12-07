@@ -3,12 +3,38 @@
 {% block title %}Kipwich{% endblock %}
 
 {% block page_content %}
-
 <link rel="stylesheet" href="{{ url_for('static', filename =  'about.css') }}" >
-
-
-<h1 style="border: 10px; text-align: center; color: aliceblue;">KIPWICHIANS</h1>
-
-
+<h1>About Us</h1>
+<div class= "parent">
+  <div class= "child">
+    <img src="static/image/abdel.jpg">
+    <br>
+    <h3>Abdel</h3>
+  </div>
+  <div class= "child">
+    <img src="static/image/jordan.jpg">
+    <br>
+    <h3>Jordan</h3>
+  </div>
+  <div class= "child">
+    <img src="static/image/piyush.jpg">
+    <br>
+    <h3>Piyush</h3>
+  </div>
+</div>
 {% endblock %}
 
+{% block scripts %}
+    <p hidden id="check">{{user.username}}</p>
+    <script>
+        if($("#check").text()==""){
+            $("#logout").hide(); 
+            $("#profile").hide();
+            $("#settings").hide();  
+        }
+        else{
+            $("#signup").hide(); 
+            $("#login").hide();
+        }
+    </script>
+{% endblock %}

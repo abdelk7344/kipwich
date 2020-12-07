@@ -1,7 +1,32 @@
 body{
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(image/us.jpg) no-repeat center center fixed; ;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(image/beach.jpg) no-repeat center center fixed; ;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  }
+}
+h1{
+  size: 50px;
+  text-align:center; 
+  color:white;
+  margin:30px 0px;
+}
+h3{
+  color:white;
+  margin:30px 0px;
+  display:inline;
+  border-bottom: 4px solid white;
+}
+.parent{
+  margin-top: 30px;
+  display: flex;
+}
+.child{
+  flex: 1;
+}
+img{
+  border-radius: 50%;
+  width:300px;
+  height:300px;
+  overflow: hidden;
+}
