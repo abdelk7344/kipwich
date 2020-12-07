@@ -112,6 +112,10 @@ def home():
     return render_template('Home.html')
     return render_template('index.html') 
 
+@app.route('/AboutUs', methods=['GET', 'POST'])
+def AboutUs():
+    return render_template('AboutUs.html') 
+
 @app.route('/SignUp', methods=['GET', 'POST'])
 def signup():
     form = RegisterForm()
