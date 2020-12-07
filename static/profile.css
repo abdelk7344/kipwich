@@ -8,7 +8,13 @@ body{
 
 h1{
   text-align:center; 
-  color:white;
+/*  color:white;*/
+  margin:30px 0px;
+}
+
+
+h2{
+  text-align:center; 
   margin:30px 0px;
 }
 
@@ -19,7 +25,7 @@ h1{
 }
 .child{
   flex: 1;
-  color: white;
+/*  color: white;*/
   background-color: #21262794;
   border-color: rgb(3, 5, 7);
   border-width: 5px;
