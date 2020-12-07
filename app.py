@@ -128,7 +128,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
-    return render_template('SignUp.html', form = form)
+    return render_template('SignUp.html', form = form, user=current_user)
 
 
 @app.route('/Login', methods=['GET', 'POST'])
@@ -142,7 +142,7 @@ def login():
                 return redirect(url_for('profile'))
 
         flash('Invalid username or password')
-    return render_template('login.html', form = form)
+    return render_template('login.html', form = form, user=current_user)
 
 
 @app.route('/Profile', methods=['GET', 'POST'])
@@ -290,12 +290,7 @@ def settings():
   
     user_to_update= User.query.get_or_404(current_user.id)
     print("hey")
-    return render_template('settings.html', form = form, form2= form2, username = user_to_update.username, test=form.username.data)
-
-
-
-
-
+    return render_template('settings.html', form = form, form2= form2, username = user_to_update.username, test=form.username.data, user=current_user)
 
 if __name__=='main':
     app.run(debug=True)

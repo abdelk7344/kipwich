@@ -28,3 +28,11 @@
 {%endfor%}
 
 {% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+              $("#login").hide(); 
+              $("#signup").hide(); 
+        });
+    </script>
+{% endblock %}
