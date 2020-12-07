@@ -9,12 +9,12 @@
 Which color would you like to see?
 <br>
 <br>
-<form name="music" method="post" action="">
+<form name="music" method="post" action="/background">
 <p>
-<input type="button"  value="blue" onClick="changeColour('b')">
-<input type="button"  value="grey" onClick="changeColour('g')">
-<input type="button"  value="pink" onClick="changeColour('p')">
-<input type="button"  value="white" onClick="changeColour('w')">
+<input type="submit"  name="btn" value="white">
+<input type="submit"  name="btn" value="lightblue">
+<input type="submit"  name="btn" value="lightgrey">
+<input type="submit"  name="btn" value="pink">
 <br>
 </form>
 </div>
@@ -69,31 +69,11 @@ Which color would you like to see?
 {% endblock %}
 
 {% block scripts %}
-
-
+    <p hidden id="check">{{user.background}}</p>
     <script>
-    	window.changeColour = function(value)
-{
-
-    var color = document.body.style.backgroundColor;
-    switch(value)
-    {
-        case 'w':
-            color = "white";
-        break;
-         case 'b':
-            color = "lightblue";
-        break;
-        case 'g':
-            color = "lightgrey";
-        break;
-        case 'p':
-            color = "pink";
-        break;
-    }
-    document.body.style.backgroundColor = color;
-}
-        $("#login").hide(); 
+        console.log($("#check").text());
+        document.body.style.backgroundColor = $("#check").text();
+        $("#login").hide();
         $("#signup").hide(); 
     </script>
 {% endblock %}

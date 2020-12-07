@@ -42,6 +42,7 @@ class User(UserMixin, db.Model):
     username= db.Column(db.String(15))
     email = db.Column(db.String(50))
     password = db.Column(db.String(80))
+    background= db.Column(db.String(15))
     activities=db.relationship('List',cascade="all, delete-orphan",backref='owner')
     def __repr__(self):
         return '<User %r>' % self.username
@@ -124,7 +125,7 @@ def signup():
         if user: 
             flash('Username already exists')
             return redirect(url_for('signup'))
-        new_user = User(username=form.username.data, email = form.email.data, password=hashed_password)
+        new_user = User(username=form.username.data, email = form.email.data, password=hashed_password, background="white")
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
@@ -289,8 +290,17 @@ def settings():
     #         flash('Current password incorrect', "pass")
   
     user_to_update= User.query.get_or_404(current_user.id)
-    print("hey")
     return render_template('settings.html', form = form, form2= form2, username = user_to_update.username, test=form.username.data, user=current_user)
+
+@app.route('/background',methods = ['GET', 'POST'])
+def background():
+    if request.method == 'POST':
+        current_user.background=request.form['btn']
+        try:
+            db.session.commit()
+            return redirect(url_for('settings'))
+        except: 
+            return "error updating background"
 
 if __name__=='main':
     app.run(debug=True)
