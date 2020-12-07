@@ -5,19 +5,57 @@
 {% block page_content %}
 
 
-<div id= "genre">
+<style>
+
+
+
+#ha{
+				background-color: white;
+			border: none;
+
+
+}
+
+
+		#ba{
+			background-color: lightblue;
+			border: none;
+
+}
+
+
+		#ca{
+			background-color: lightgrey;
+			border: none;
+
+}
+		#da{
+			background-color: pink;
+			border: none;
+
+}
+
+
+	</style>
+
+
+
 Which color would you like to see?
 <br>
 <br>
-<form name="music" method="post" action="/background">
+
+<form name="colors" method="post" action="/background">
+
 <p>
-<input type="submit"  name="btn" value="white">
-<input type="submit"  name="btn" value="lightblue">
-<input type="submit"  name="btn" value="lightgrey">
-<input type="submit"  name="btn" value="pink">
+
+	
+<input type="submit"  name="btn" value="white" class = "btn btn-light" id="ha">
+<input type="submit"  name="btn" value="lightblue" class = "btn btn-light" id = ba>
+<input type="submit"  name="btn" value="lightgrey" class = "btn btn-light" id = ca>
+<input type="submit"  name="btn" value="pink" class = "btn btn-light" id = da>
 <br>
 </form>
-</div>
+
 
 
 <h1>Current Username: {{ username }}</h1>
