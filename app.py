@@ -12,13 +12,12 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import os
 
 app = Flask(__name__)
-
+application = app
 image = os.path.join('static', 'image')
 app.config['UPLOAD_FOLDER'] = image
 app.config['SECRET_KEY'] = 'Thisisasecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_BINDS']={'two':'sqlite:///community.db'}
-application = app
 Bootstrap(app)
 
 #intialize database
@@ -152,7 +151,7 @@ def profile():
         try:
             db.session.add(new_activity)
             db.session.commit()
-            return redirect('/Profile')
+            return redirect(url_for('profile'))
         except:
             return "There was an error adding User"
     elif form2.submit2.data and form2.validate():
@@ -162,13 +161,13 @@ def profile():
         try:
             db.session.add(new_activity)
             db.session.commit()
-            return redirect('/Profile')
+            return redirect(url_for('profile'))
         except:
             return "There was an error adding Activity"
     else:
         all_activities=current_user.activities
         c_all_activities=Community.query
-        return render_template('profile.html', user = current_user,form=form,all_activities= all_activities,form2=form2,c_all_activities=c_all_activities)
+        return render_template('Profile.html', user = current_user,form=form,all_activities= all_activities,form2=form2,c_all_activities=c_all_activities)
 
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
@@ -179,7 +178,7 @@ def aupdate(id):
         activity_to_update.activity=form.activity.data
         try:
             db.session.commit()
-            return redirect('/Profile')
+            return redirect(url_for('profile'))
         except:
             return "There was an error updating your activity"
          
@@ -193,7 +192,7 @@ def adelete(id):
     try:
         db.session.delete(activity_to_delete)
         db.session.commit()
-        return redirect('/Profile')
+        return redirect(url_for('profile'))
     except:
         return "There was a problem deleting that activity"
 
@@ -205,7 +204,7 @@ def cupdate(id):
         activity_to_update.activity=form.activity.data
         try:
             db.session.commit()
-            return redirect('/Profile')
+            return redirect(url_for('profile'))
         except:
             return "There was an error updating your activity"
          
@@ -219,7 +218,7 @@ def cdelete(id):
     try:
         db.session.delete(activity_to_delete)
         db.session.commit()
-        return redirect('/Profile')
+        return redirect(url_for('profile'))
     except:
         return "There was a problem deleting that activity"
 

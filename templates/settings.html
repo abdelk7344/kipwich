@@ -36,7 +36,7 @@ form {
 <br>
 <div class="centerIt">
 <h1>Background color</h1>
-<form name="colors" method="post" action="/background" class = "lol">
+<form name="colors" method="post" action="/kipwich/background" class = "lol">
 	<input type="submit"  name="btn" value="white" class = "btn btn-light" id="ha">
 	<input type="submit"  name="btn" value="lightblue" class = "btn btn-light" id = ba>
 	<input type="submit"  name="btn" value="lightgrey" class = "btn btn-light" id = ca>
@@ -48,7 +48,7 @@ form {
 <br>
 
 <h1>Current Username: {{ username }}</h1>
-<form class= "change_user" method = "POST" action = "/settings" form id="test">
+<form class= "change_user" method = "POST" action = "/kipwich/settings" form id="test">
 	{{ form.hidden_tag() }}
 	{{ wtf.form_field(form.username) }}
     <button class="btn btn-secondary" type="submit" form = "test"> Update Username </button>
@@ -59,7 +59,7 @@ form {
 <br>
 
 <h1>Change Password</h1>
-<form class= "change_pass" method = "POST" action = "/settings" form id="better">
+<form class= "change_pass" method = "POST" action = "/kipwich/settings" form id="better">
 	{{ form2.hidden_tag() }}
 	{{ wtf.form_field(form2.currentpassword) }}
 	{{ wtf.form_field(form2.newpassword) }}

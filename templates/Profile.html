@@ -8,24 +8,24 @@
 <div class="parent">
   <div class= "child" >
     <h1>Hi {{ user.username }}! <br> Add to Your List </h1>
-    <form method = "POST" action = "/Profile" class = "yams">
+    <form method = "POST" action = "/kipwich/Profile" class = "yams">
       {{ form.hidden_tag() }}
       {{ wtf.form_field(form.activity) }}
       {{ form.submit(class_="btn btn-info")}}
     </form>
     {%for activity in all_activities%}
-      <li>{{activity.activity}} <a href="/update/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/delete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
+      <li>{{activity.activity}} <a href="/kipwich/update/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/kipwich/delete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
     {%endfor%}
   </div>
   <div class= "child" >
     <h1>Community Bucket List</h1>
-      <form method = "POST" action = "/Profile" class = "yams">
+      <form method = "POST" action = "/kipwich/Profile" class = "yams">
         {{ form2.hidden_tag() }}
         {{ wtf.form_field(form2.activity) }}
         {{form2.submit2(class_="btn btn-info")}}
       </form>
       {%for activity in c_all_activities%}
-        <li>{{activity.activity}} <a href="/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
+        <li>{{activity.activity}} <a href="/kipwich/cupdate/{{activity.id}}"><i class="fa fa-edit"></i></a> <a href="/kipwich/cdelete/{{activity.id}}"> <i class="fa fa-trash"></i></a></li>
       {%endfor%}
   </div>
 </div>

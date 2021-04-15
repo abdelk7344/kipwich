@@ -14,7 +14,7 @@ body {
 </style>
 <div id="space">
 <h1>Update Activity</h1>
-<form action= "/update/{{activity_to_update.id}}" METHOD = "POST">
+<form action= "/kipwich/update/{{activity_to_update.id}}" METHOD = "POST">
 	{{ form.hidden_tag() }}
     {{ wtf.form_field(form.activity)}}
     <button class="btn btn-secondary" type="submit">Update</button>
