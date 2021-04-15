@@ -8,7 +8,6 @@ Flask-Migrate==2.5.3
 Flask-Moment==0.10.0
 Flask-SQLAlchemy==2.4.4
 Flask-WTF==0.14.3
-futures==3.3.0
 gunicorn==19.10.0
 itsdangerous==1.1.0
 Jinja2==2.11.2
